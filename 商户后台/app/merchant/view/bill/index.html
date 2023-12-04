@@ -1,0 +1,107 @@
+<style type="text/css">
+    .sm-st {
+        background: #fff;
+        padding: 20px;
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+        border-radius: 3px;
+        margin-bottom: 0px;
+    }
+
+    .sm-st-icon {
+        width: 60px;
+        height: 60px;
+        display: inline-block;
+        line-height: 60px;
+        text-align: center;
+        font-size: 30px;
+        background: #eee;
+        -webkit-border-radius: 5px;
+        -moz-border-radius: 5px;
+        border-radius: 5px;
+        float: left;
+        margin-right: 10px;
+        color: #fff;
+    }
+
+    .sm-st-info {
+        padding-top: 2px;
+    }
+
+    .sm-st-info span {
+        display: block;
+        font-size: 24px;
+        font-weight: 600;
+    }
+
+    .st-red {
+        background-color: #F05050;
+    }
+
+    
+.ant-card-head {
+    min-height: 30px;
+    padding: 0 10px;
+    color: rgba(0,0,0,.85);
+    font-weight: 500;
+    font-size: 16px;
+    background: transparent;
+    border-bottom: 1px solid rgba(0,0,0,.06);
+    border-radius: 2px 2px 0 0;
+}
+.ant-card-head-wrapper {
+    display: flex;
+    align-items: center;
+}
+.ant-card-head-title {
+    display: inline-block;
+    flex: 1;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+</style>
+<div class="panel panel-default panel-intro">
+    
+    <div class="panel-heading">
+        <div class="panel-lead">
+            <em style="font-size:18px;">账单</em>
+        </div>
+    </div>
+    <div class="panel-body">
+        <div class="tab-content">
+            <div class="tab-pane fade active in">
+                <div class="row">
+                    <div class="col-sm-3 col-xs-6">
+                        <div class="sm-st clearfix">
+                            <span class="sm-st-icon st-red"><i class="fa fa-usd"></i></span>
+                            <div class="sm-st-info">
+                                <span>{$merchant_info.balance|number_format=2}</span>
+                                当前余额
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="panel-body">
+        <div id="myTabContent" class="tab-content">
+            <div class="tab-pane fade active in" id="one">
+                <div class="widget-body no-padding">
+                    <div id="toolbar" class="toolbar">
+                        <a href="javascript:;" class="btn btn-primary btn-refresh" title="刷新"><i class="fa fa-refresh"></i> </a>   
+                    </div>
+                        <table id="table" class="table table-striped table-bordered table-hover table-nowrap" data-operate-edit="1" data-operate-del="1" width="100%">
+                        </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="panel-heading" style="background: #fff;border-color: #fff;">
+        <div class="panel-lead">
+            <em>说明</em>
+            1.账单金额 = 订单金额 * 账户费率。
+        </div>
+    </div>
+</div>

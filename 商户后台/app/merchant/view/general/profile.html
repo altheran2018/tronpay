@@ -1,0 +1,90 @@
+<style>
+    .profile-avatar-container {
+        position: relative;
+        width: 100px;
+        margin: 0 auto;
+    }
+
+    .profile-avatar-container .profile-user-img {
+        width: 100px;
+        height: 100px;
+    }
+
+    .profile-avatar-container .profile-avatar-text {
+        display: none;
+    }
+
+    .profile-avatar-container:hover .profile-avatar-text {
+        display: block;
+        position: absolute;
+        height: 100px;
+        width: 100px;
+        background: #444;
+        opacity: .6;
+        color: #fff;
+        top: 0;
+        left: 0;
+        line-height: 100px;
+        text-align: center;
+    }
+
+    .profile-avatar-container button {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100px;
+        height: 100px;
+        opacity: 0;
+    }
+</style>
+<div id="errtips" class="hide"></div>
+<div class="row animated fadeInRight">
+    <div class="col-md-12">
+        <div class="box box-primary">
+            <div class="panel-heading">
+                个人资料            
+            </div>
+            <div class="panel-body">
+                <form id="update-form" role="form" data-toggle="validator" method="POST" action="">
+                    <input type="hidden" id="c-avatar" name="row[avatar]" value="{$merchant.avatar|cdnurl|htmlentities}"/>
+                    <div class="box-body box-profile">
+
+                        <div class="profile-avatar-container">
+                            <img class="profile-user-img img-responsive img-circle" src="{$merchant.avatar|cdnurl|htmlentities}" alt="">
+                            <div class="profile-avatar-text img-circle">点击编辑</div>
+                            <button type="button" id="faupload-avatar" class="faupload" data-input-id="c-avatar"><i class="fa fa-upload"></i> 上传</button>
+                        </div>
+
+                        <h3 class="profile-username text-center">{$merchant.nickname}</h3>
+
+                        <div class="form-group">
+                            <label for="username" class="control-label">商户名:</label>
+                            <input type="text" class="form-control" id="username" name="row[username]" value="{$merchant.username}" disabled/>
+                        </div>
+                        <div class="form-group">
+                            <label for="mobile" class="control-label">手机:</label>
+                            <input type="text" class="form-control" id="mobile" name="row[mobile]" value="{$merchant.mobile}" data-rule="mobile"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="email" class="control-label">邮箱:</label>
+                            <input type="text" class="form-control" id="email" name="row[email]" value="{$merchant.email}" data-rule="required;email"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="nickname" class="control-label">昵称:</label>
+                            <input type="text" class="form-control" id="nickname" name="row[nickname]" value="{$merchant.nickname}" data-rule="required"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="password" class="control-label">密码:</label>
+                            <input type="password" class="form-control" id="password" placeholder="不修改密码请留空" autocomplete="new-password" name="row[password]" value="" data-rule="password"/>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary">提交</button>
+                            <button type="reset" class="btn btn-default">重置</button>
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

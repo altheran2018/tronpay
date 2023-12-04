@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {include file="common/meta" /}
+
+    <style type="text/css">
+        body {
+            color: #999;
+            background-color: #f1f4fd;
+            background-size: cover;
+        }
+
+        a {
+            color: #444;
+        }
+
+
+        .login-screen {
+            max-width: 430px;
+            padding: 0;
+            margin: 50px auto 0 auto;
+
+        }
+
+        .login-screen .well {
+            border-radius: 3px;
+            -webkit-box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
+            background: rgba(255, 255, 255, 1);
+            border: none;
+            /*overflow: hidden;*/
+            padding: 0;
+        }
+
+        @media (max-width: 767px) {
+            .login-screen {
+                padding: 0 20px;
+            }
+
+            footer.footer {
+                position: fixed;
+            }
+
+            footer.footer .copyright {
+                padding: 10px;
+                line-height: 30px;
+            }
+        }
+
+        .profile-img-card {
+            width: 100px;
+            height: 100px;
+            display: block;
+            -moz-border-radius: 50%;
+            -webkit-border-radius: 50%;
+            border-radius: 50%;
+            margin: -93px auto 30px;
+            border: 5px solid #fff;
+        }
+
+        .profile-name-card {
+            text-align: center;
+        }
+
+        .login-head {
+            background: #899fe1;
+            border-radius: 3px 3px 0 0;
+        }
+
+        .login-form {
+            padding: 40px 30px;
+            position: relative;
+            z-index: 99;
+        }
+
+        #login-form {
+            margin-top: 20px;
+        }
+
+        #login-form .input-group {
+            margin-bottom: 15px;
+        }
+
+        #login-form .form-control {
+            font-size: 13px;
+        }
+    </style>
+    
+</head>
+<body>
+<div class="container">
+    <div class="login-wrapper">
+        <div class="login-screen">
+            <div style="text-align:center;color:black;font-size:25px;font-weight:bold;margin:20px;">
+                <img src="/assets/img/logo.png" style="width:50px;height:50px;">
+                Tronpay
+            </div>
+            <div class="well">
+                <div class="login-form">
+                    <div class="alert alert-warning-light">商户后台 - 登录</div>
+                    <form action="" method="post" id="login-form">
+                        {:token_field()}
+                        <!--@AdminLoginFormBegin-->
+                        <div id="errtips" class="hide"></div>
+                        
+                        <div class="input-group">
+                            <div class="input-group-addon"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></div>
+                            <input type="text" class="form-control" id="pd-form-username" placeholder="商户名" name="username" autocomplete="off" value="" data-rule="商户名:required;username"/>
+                        </div>
+
+                        <div class="input-group">
+                            <div class="input-group-addon"><span class="glyphicon glyphicon-lock" aria-hidden="true"></span></div>
+                            <input type="password" class="form-control" id="pd-form-password" placeholder="密码" name="password" autocomplete="off" value="" data-rule="密码:required;password"/>
+                        </div>
+                        <!--@CaptchaBegin-->
+                        
+                        <!--@CaptchaEnd-->
+                        {if $keep_login_hours > 0}
+                        <div class="form-group checkbox">
+                            <label class="inline" for="keeplogin" data-toggle="tooltip" title="设定会话时长为{$keep_login_hours}小时">
+                                <input type="checkbox" name="keeplogin" id="keeplogin" value="{$keep_login_hours*3600}"/>
+                                保持会话
+                            </label>
+                        </div>
+                        {/if}
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-success btn-lg btn-block" style="background:#708eea;">登录</button>
+                            <a href="{:url('index/register')}" class="btn btn-default btn-lg btn-block mt-3 no-border">还没有账号？点击注册</a>
+                        </div>
+                        <!--@AdminLoginFormEnd-->
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{include file="common/script" /}
+</body>
+</html>

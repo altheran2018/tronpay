@@ -1,0 +1,346 @@
+<style type="text/css">
+    @media (max-width: 375px) {
+        .edit-form tr td input {
+            width: 100%;
+        }
+
+        .edit-form tr th:first-child, .edit-form tr td:first-child {
+            width: 20%;
+        }
+
+        .edit-form tr th:nth-last-of-type(-n+2), .edit-form tr td:nth-last-of-type(-n+2) {
+            display: none;
+        }
+    }
+
+    .edit-form table > tbody > tr td a.btn-delcfg {
+        visibility: hidden;
+    }
+
+    .edit-form table > tbody > tr:hover td a.btn-delcfg {
+        visibility: visible;
+    }
+
+</style>
+<div id="errtips" class="hide"></div>
+<div class="panel panel-default panel-intro">
+    <div class="panel-heading">
+        <div class="panel-lead">
+            <em style="font-size:18px;">设置</em>
+        </div>        
+        <ul class="nav nav-tabs">
+            <li class="active"><a href="#tab-notice" data-toggle="tab">通知设置</a></li>
+            <li class=""><a href="#tab-security" data-toggle="tab">安全设置</a></li>
+            <li class=""><a href="#tab-callback" data-toggle="tab">回调设置</a></li>
+            <li class=""><a href="#tab-white" data-toggle="tab">接口白名单</a></li>
+            <li class=""><a href="#tab-apiparam" data-toggle="tab">接入参数</a></li>
+        </ul>
+    </div>
+
+    <div class="panel-body">
+        <div id="myTabContent" class="tab-content">
+            <!--@formatter:off-->
+            <div class="tab-pane fade active in" id="tab-notice">
+                <div class="widget-body no-padding">
+                    <form id="notice-form" class="edit-form form-horizontal" role="form" data-toggle="validator" method="POST" action="">
+                        <input type="hidden" name="type" value="notice" />
+                        <table class="table table-striped">
+                            <tbody>
+                            <tr data-favisible="" data-name="email" class="">
+                                <td>接收邮箱</td>
+                                <td>
+                                    <div class="row">
+                                        <div class="col-sm-8 col-xs-12">
+                                            <input  type="text" name="row[notify_email]" value="{$merchant_param_info['notify_email']}" class="form-control" data-rule="接收邮箱:required;email" data-tip="接收邮箱"/>
+                                        </div>
+                                        <div class="col-sm-4"></div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr data-favisible="" data-name="notice_type" class="">
+                                <td>接收类型</td>
+                                <td>
+                                    <div class="row">
+                                        <div class="col-sm-8 col-xs-12" style="margin-bottom:5px;">
+                                            <label class="inline" for="order_complete" data-toggle="tooltip" title="" style="font-weight:normal;">
+                                                <input type="checkbox" name="row[order_complete]" id="order_complete" value="1" {if $merchant_param_info['order_complete'] == '1'}checked{/if}/>
+                                                订单处理完成发送通知
+                                            </label>                                            
+                                        </div>
+                                        <div class="col-sm-8 col-xs-12" style="margin-bottom:5px;">
+                                            <label class="inline" for="balance_not_enough" data-toggle="tooltip" title="" style="font-weight:normal;">
+                                                <input type="checkbox" name="row[balance_not_enough]" id="balance_not_enough" value="1" {if $merchant_param_info['balance_not_enough'] == '1'}checked{/if}/>
+                                                账户余额不足时发送通知
+                                            </label>                                            
+                                        </div>
+                                        <div class="col-sm-8 col-xs-12" style="margin-bottom:5px;">
+                                            <label class="inline" for="login_success" data-toggle="tooltip" title="" style="font-weight:normal;">
+                                                <input type="checkbox" name="row[login_success]" id="login_success" value="1" {if $merchant_param_info['login_success'] == '1'}checked{/if}/>
+                                                成功登录系统时发送通知
+                                            </label>                                            
+                                        </div>
+                                        <div class="col-sm-4"></div>
+                                    </div>
+
+                                </td>
+                                </tbody>
+                            <tfoot>
+                            <tr>
+                                <td></td>
+                                <td>
+                                    <div class="layer-footer">
+                                        <button type="submit" class="btn btn-primary btn-embossed">确定</button>
+                                        <button type="reset" class="btn btn-default btn-embossed">重置</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            </tfoot>
+                        </table>
+                    </form>
+                </div>
+                <div class="panel-heading" style="background: #fff;border-color: #fff;">
+                    <div class="panel-lead">
+                        <em style="display: block;font-weight: bold;font-style: normal;">说明</em>
+                        <p>1.若邮箱无法接收通知信息，请检查邮箱客户端是否将来自 gmail 的邮件归入垃圾箱。</p>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade " id="tab-security">
+                <div class="widget-body no-padding">
+                    {if $merchant_param_info['google_secret'] == ''}
+                    <form id="security-form" class="edit-form form-horizontal" role="form" data-toggle="validator" method="POST" action="">  
+                        <input type="hidden" name="type" value="security" />
+                        <input type="hidden" name="secret" value="{$secret}" />
+                        <table class="table table-striped">
+                            <tbody>
+                            <tr data-favisible="" data-name="mail_type" class="">
+                                <td width="20%">请使用Google Authenticator扫描二维码</td>
+                                <td width="70%">
+                                    <div class="row">
+                                        <div class="col-sm-8 col-xs-12">
+                                            <img src="{$qrcode_url}">
+                                        </div>
+                                        <div class="col-sm-4"></div>
+                                    </div>
+
+                                </td>
+                            </tr>
+                            <tr data-favisible="" data-name="mail_smtp_host" class="">
+                                <td>安全码</td>
+                                <td>
+                                    <div class="row">
+                                        <div class="col-sm-8 col-xs-12">
+                                            <input type="text" name="code" class="form-control" value="" placeholder="" data-rule="安全码:required;length(6)">                                        
+                                        </div>
+                                        <div class="col-sm-4"></div>
+                                    </div>
+
+                                </td>
+                            </tr>                            
+                            </tbody>
+                            <tfoot>
+                            <tr>
+                                <td></td>
+                                <td>
+                                    <div class="layer-footer">
+                                        <button type="submit" class="btn btn-primary btn-embossed">确定</button>
+                                        <button type="reset" class="btn btn-default btn-embossed">重置</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            </tfoot>
+                        </table>
+                    </form>
+                    {/if}
+                    {if $merchant_param_info['google_secret'] != ''}
+                    <form id="security-form" class="edit-form form-horizontal" role="form" data-toggle="validator" method="POST" action="">  
+                        <input type="hidden" name="type" value="google_unlink" />
+                        <table class="table table-striped">
+                            <tbody>
+                            <tr data-favisible="" data-name="mail_smtp_host" class="">
+                                <td width="15%">安全码</td>
+                                <td width="68%">
+                                    <div class="row">
+                                        <div class="col-sm-8 col-xs-12">
+                                            <input type="text" name="code" class="form-control" value="" placeholder="" data-rule="安全码:required;length(6)">                                        
+                                        </div>
+                                        <div class="col-sm-4"></div>
+                                    </div>
+                                </td>
+                            </tr>                            
+                            </tbody>
+                            <tfoot>
+                            <tr>
+                                <td></td>
+                                <td>
+                                    <div class="layer-footer">
+                                        <button type="submit" class="btn btn-danger btn-embossed">解除绑定</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            </tfoot>
+                        </table>
+                    </form>
+                    {/if}
+                </div>
+                <div class="panel-heading" style="background: #fff;border-color: #fff;">
+                    <div class="panel-lead">
+                        <em style="display: block;font-weight: bold;font-style: normal;">说明</em>
+                        <p>1.开启两步安全验证，将极大的保障你的账户安全。</p>
+                        <p>软件下载</p>
+                        <p>
+                            <a href="https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2&hl=zh_CN&gl=US" target="_blank">安卓GOOGLE PLAY</a>  
+                            <a href="https://apk.support/download-app-zh_cn/com.google.android.apps.authenticator2" target="_blank">安卓APK</a>  
+                            <a href="https://apps.apple.com/us/app/google-authenticator/id388497605" target="_blank">IOS</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade " id="tab-callback">
+                <div class="widget-body no-padding">
+                    <form id="callback-form" class="edit-form form-horizontal" role="form" data-toggle="validator" method="POST" action="">
+                        <input type="hidden" name="type" value="callback" />
+                        <table class="table table-striped">
+                            <tbody>
+                            <tr data-favisible="" data-name="categorytype" class="">
+                                <td width="15%">订单回调地址</td>
+                                <td width="68%">
+                                    <div class="row">
+                                        <div class="col-sm-8 col-xs-12">
+                                            <input  type="text" name="row[notify_url]" value="" class="form-control" data-rule="" data-tip="请输入以http或https开头的链接类型"/>                                            
+                                        </div>
+                                        <div class="col-sm-4"></div>
+                                    </div>
+                                </td>
+                            </tr>
+                            </tbody>
+                            <tfoot>
+                            <tr>
+                                <td></td>
+                                <td>
+                                    <div class="layer-footer">
+                                        <button type="submit" class="btn btn-primary btn-embossed">确定</button>
+                                        <button type="reset" class="btn btn-default btn-embossed">重置</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            </tfoot>
+                        </table>
+                    </form>
+                </div>
+                <div class="panel-heading" style="background: #fff;border-color: #fff;">
+                    <div class="panel-lead">
+                        <em style="display: block;font-weight: bold;font-style: normal;">说明</em>
+                        <p>1.订单回调地址将用于成功后的回调通知。如创建订单接口未指定 notify_url 参数，则会使用此处配置的地址。</p>
+                        <p>2.回调地址仅支持以 http 或 https 开头的链接类型。</p>
+                        <p>3.测试操作将会发送一个 POST 消息到相关的回调地址，探测其是否可连通访问。</p>
+                        <p>4.请确保输入的回调地址可公网访问。</p>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade " id="tab-white">
+                <div class="widget-body no-padding">
+                    <form id="white-form" class="edit-form form-horizontal" role="form" data-toggle="validator" method="POST" action="">
+                        <input type="hidden" name="type" value="whitelist" />
+                        <table class="table table-striped">
+                            <tbody>
+                                <tr data-favisible="" data-name="categorytype" class="">
+                                    <td width="15%">接口IP白名单</td>
+                                    <td width="68%">
+                                        <div class="row">
+                                            <div class="col-sm-8 col-xs-12">
+                                                <input  type="text" name="row[white_list]" value="" class="form-control" data-rule="" data-tip="请输入IP地址，多个地址以英文;分隔"/>                                            
+                                            </div>
+                                            <div class="col-sm-4"></div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                            <tr>
+                                <td></td>
+                                <td>
+                                    <div class="layer-footer">
+                                        <button type="submit" class="btn btn-primary btn-embossed">确定</button>
+                                        <button type="reset" class="btn btn-default btn-embossed">重置</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            </tfoot>
+                        </table>
+                    </form>
+                </div>
+                <div class="panel-heading" style="background: #fff;border-color: #fff;">
+                    <div class="panel-lead">
+                        <em style="display: block;font-weight: bold;font-style: normal;">说明</em>
+                        <p>1.可填写你应用托管的服务器IP地址，保障接口安全。</p>
+                        <p>2.多个IP请以英文逗号分隔。留空则不校验。</p>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade " id="tab-apiparam">
+                <div class="widget-body no-padding">
+                    <form id="api-form" class="edit-form form-horizontal" role="form" data-toggle="validator" method="POST" action="">
+                        <input type="hidden" name="type" value="apiparam" />
+                        <table class="table table-striped">
+                            <tbody>
+                                <tr data-favisible="" data-name="categorytype" class="">
+                                    <td width="15%">商户ID（Merchant_id）</td>
+                                    <td width="68%">
+                                        <div class="row">
+                                            <div class="col-sm-8 col-xs-12">
+                                                <dl class="fieldlist" data-name="merchant_id" data-listidx="0">
+                                                    <dd class="form-inline">
+                                                        <input type="text" name="merchant_id" class="form-control" value="{$merchant.id}" placeholder="" style="width:300px;" disabled> 
+                                                        <span class="btn btn-sm btn-default btn-copy" data-clipboard-text="{$merchant.id}"><i class="fa fa-copy"></i> 复制</span> 
+                                                    </dd>
+                                                </dl>
+                                            </div>
+                                            <div class="col-sm-4"></div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr data-favisible="" data-name="categorytype" class="">
+                                    <td width="15%">密钥（Secret）</td>
+                                    <td width="68%">
+                                        <div class="row">
+                                            <div class="col-sm-8 col-xs-12">
+                                                <dl class="fieldlist" data-name="row[secret]" data-listidx="0">
+                                                    <dd class="form-inline">
+                                                        <input type="password" name="row[secret]" class="form-control password" value="{$merchant_param_info['secret']}" placeholder="" data-rule="密钥:required" style="width:300px;"> 
+                                                        <span class="btn btn-sm btn-default show_pass"><i class="fa fa-eye"></i></span>
+                                                        <span class="btn btn-sm btn-default btn-copy" data-clipboard-text="{$merchant_param_info['secret']}"><i class="fa fa-copy"></i> 复制</span> 
+                                                        <span class="btn btn-sm btn-danger btn-refresh"><i class="fa fa-refresh"></i> 重新生成</span>
+                                                    </dd>
+                                                </dl>
+                                            </div>
+                                            <div class="col-sm-4"></div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td></td>
+                                    <td>
+                                        <div class="layer-footer">
+                                            <button type="submit" class="btn btn-primary btn-embossed">保存</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                </tfoot>
+                        </table>
+                    </form>
+                </div>
+                <div class="panel-heading" style="background: #fff;border-color: #fff;">
+                    <div class="panel-lead">
+                        <em style="display: block;font-weight: bold;font-style: normal;">说明</em>
+                        <p>1.生成新的接口密钥，将会自动禁用旧的接口密钥。</p>
+                        <p>2.请务必妥善保管你的接口密钥。由密钥泄漏导致的资产受损平台概不负责。</p>
+                    </div>
+                </div>
+            </div>
+            <!--@formatter:on-->
+        </div>
+    </div>
+</div>

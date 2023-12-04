@@ -1,0 +1,45 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- 加载样式及META信息 -->
+        {include file="common/meta" /}
+    </head>
+    <body class="hold-transition <?php if(cookie('adminskin') != ''){echo cookie('adminskin');}else{echo config('merchant.admin_skin');} ?> sidebar-mini  fixed multipletab " id="tabs">
+
+        <div class="wrapper">
+
+            <!-- 头部区域 -->
+            <header id="header" class="main-header">
+                {include file='common/header' /}
+            </header>
+
+            <!-- 左侧菜单栏 -->
+            <aside class="main-sidebar">
+                {include file='common/menu' /}
+            </aside>
+
+            <!-- 主体内容区域 -->
+            <div class="content-wrapper tab-content tab-addtabs">
+                <div role="tabpanel" class="tab-pane <?php if (input('referer') == '' || strstr(input('referer'), 'dashboard')) { ?>active<?php } ?>" id="con_1">
+                    <iframe src="{:url('dashboard/index',['addtabs'=>1])}" width="100%" height="100%" frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling-x="no" scrolling-y="auto" allowtransparency="yes"></iframe>
+                </div>
+                
+            </div>
+
+            <!-- 底部链接,默认隐藏 -->
+            <footer class="main-footer hide">
+                <div class="pull-right hidden-xs">
+                </div>
+                <strong>Copyright &copy; 2017-{:date("Y") <a href="/">{$title}</a>.</strong> All rights reserved.
+            </footer>
+
+            <!-- 右侧控制栏 -->
+            <div class="control-sidebar-bg"></div>
+            {include file="common/control" /}
+        </div>
+
+        <!-- 加载JS脚本 -->
+        <script src="/assets/js/require.min.js" data-main="/assets/js/require-backend.min.js?v=1.0.2"></script>
+    </body>
+</html>

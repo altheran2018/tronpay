@@ -1,0 +1,107 @@
+<!-- 左侧菜单栏 -->
+<section class="sidebar">
+
+    <!-- 移动端一级菜单 -->
+    <div class="mobilenav visible-xs">
+
+    </div>
+
+    <!-- 左侧菜单栏 -->
+    <ul class="sidebar-menu show-submenu">
+
+        <!-- 菜单可以在 后台管理->权限管理->菜单规则 中进行增删改排序 -->
+        <li class=" " style="display:none;">
+            <a href="{:url('general/profile',['ref'=>'addtabs'])}" addtabs="12" class="" url="{:url('general/profile')}" py="grzl" pinyin="gerenziliao">
+                <i class="fa fa-user fa-fw"></i>
+                <span>个人资料</span>
+                <span class="pull-right-container"> </span>
+            </a>
+        </li>
+        <li class="<?php if (input('referer') == '' || strstr(input('referer'), 'dashboard/')) { ?>active<?php } ?>">
+            <a href="{:url('dashboard/index',['ref'=>'addtabs'])}" addtabs="1" class="" url="{:url('dashboard/index')}" py="sy" pinyin="shouye">
+                <i class="fa fa-dashboard fa-fw"></i>
+                <span>首页</span>
+                <span class="pull-right-container"> </span>
+            </a>
+        </li>
+        <li class=" treeview treeview-open">
+            <a href="javascript:;" addtabs="2" class="" url="javascript:;" py="dd" pinyin="dingdan">
+                <i class="fa fa-clipboard fa-fw"></i>
+                <span>订单</span>
+                <span class="pull-right-container">
+                    <i class="fa fa-angle-left"></i>
+                </span>
+            </a>
+            <ul class="treeview-menu menu-open">
+                <li class="<?php if (input('referer') != '' && strstr(input('referer'), 'order/index')) { ?>active<?php } ?>">
+                    <a href="{:url('order/index',['ref'=>'addtabs'])}" addtabs="8" class="" url="{:url('order/index')}" py="ddlb" pinyin="dingdanliebiao">
+                        <i class="fa fa-bars fa-fw"></i>
+                        <span>订单列表</span>
+                        <span class="pull-right-container"> </span>
+                    </a>
+                </li>
+                <li class="<?php if (input('referer') != '' && strstr(input('referer'), 'order/statics')) { ?>active<?php } ?>">
+                    <a href="{:url('order/statics',['ref'=>'addtabs'])}" addtabs="9" class="" url="{:url('order/statics')}" py="ddtj" pinyin="dingdantongji">
+                        <i class="fa fa-bar-chart-o fa-fw"></i>
+                        <span>订单统计</span>
+                        <span class="pull-right-container"> </span>
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <li class="<?php if (input('referer') != '' && strstr(input('referer'), 'token/')) { ?>active<?php } ?>">
+            <a href="{:url('token/index',['ref'=>'addtabs'])}" addtabs="3" class="" url="{:url('token/index')}" py="dz" pinyin="dizhi">
+                <i class="fa fa-chain fa-fw"></i>
+                <span>地址</span>
+                <span class="pull-right-container"> </span>
+            </a>
+        </li>
+        <li class="<?php if (input('referer') != '' && strstr(input('referer'), 'recharge/')) { ?>active<?php } ?>">
+            <a href="{:url('recharge/index',['ref'=>'addtabs'])}" addtabs="4" class="" url="{:url('recharge/index')}" py="cz" pinyin="chonzhi">
+                <i class="fa fa-yen fa-fw"></i>
+                <span>充值</span>
+                <span class="pull-right-container"> </span>
+            </a>
+        </li>
+        <li class="<?php if (input('referer') != '' && strstr(input('referer'), 'bill/')) { ?>active<?php } ?>">
+            <a href="{:url('bill/index',['ref'=>'addtabs'])}" addtabs="5" class="" url="{:url('bill/index')}" py="zd" pinyin="zhangdan">
+                <i class="fa fa-file-text-o fa-fw"></i>
+                <span>帐单</span>
+                <span class="pull-right-container"> </span>
+            </a>
+        </li>
+        <li class="<?php if (input('referer') != '' && strstr(input('referer'), 'setting/')) { ?>active<?php } ?>">
+            <a href="{:url('setting/index',['ref'=>'addtabs'])}" addtabs="6" class="" url="{:url('setting/index')}" py="sz" pinyin="shezhi">
+                <i class="fa fa-gears fa-fw"></i>
+                <span>设置</span>
+                <span class="pull-right-container"> </span>
+            </a>
+        </li>
+        <li class=" treeview treeview-open">
+            <a href="javascript:;" addtabs="7" class="" url="javascript:;" py="gj" pinyin="gongju">
+                <i class="fa fa-rocket fa-fw"></i>
+                <span>工具</span>
+                <span class="pull-right-container">
+                    <i class="fa fa-angle-left"></i>
+                </span>
+            </a>
+            <ul class="treeview-menu menu-open">
+                <li class="<?php if (input('referer') != '' && strstr(input('referer'), 'tool/paytest')) { ?>active<?php } ?>">
+                    <a href="{:url('tool/paytest',['ref'=>'addtabs'])}" addtabs="10" class="" url="{:url('tool/paytest')}" py="ddcs" pinyin="dingdanceshi">
+                        <i class="fa fa-circle-o fa-fw"></i>
+                        <span>订单测试</span>
+                        <span class="pull-right-container"> </span>
+                    </a>
+                </li>
+                <li class="<?php if (input('referer') != '' && strstr(input('referer'), 'tool/plugin')) { ?>active<?php } ?>">
+                    <a href="{:url('tool/plugin',['ref'=>'addtabs'])}" addtabs="11" class="" url="{:url('tool/plugin')}" py="cjxz" pinyin="zhajianxiazai">
+                        <i class="fa fa-circle-o fa-fw"></i>
+                        <span>插件下载</span>
+                        <span class="pull-right-container"> </span>
+                    </a>
+                </li>
+            </ul>
+        </li>
+
+    </ul>
+</section>

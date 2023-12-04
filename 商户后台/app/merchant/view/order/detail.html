@@ -1,0 +1,147 @@
+<style>
+    .table-adminlog tr td {
+        word-break: break-all;
+    }
+</style>
+<div class="panel panel-default panel-intro">
+    <div class="panel-heading">
+        <ul class="nav nav-tabs">
+            <li class="active"><a href="#tab-detail" data-toggle="tab">订单详情</a></li>
+            {if $row.status!=2}
+            <li class=""><a href="#tab-manual" data-toggle="tab"><span class="text-warning">人工处理</span></a></li>
+            {/if}
+        </ul>
+    </div>
+
+    <div class="panel-body">
+        <div id="myTabContent" class="tab-content">
+            <!--@formatter:off-->
+            <div class="tab-pane fade active in" id="tab-detail">
+                <table class="table table-striped table-adminlog">
+                    <tbody>
+                        <tr>
+                            <td>商户ID</td>
+                            <td>{$row.merchant_id}</td>
+                        </tr>
+                        <tr>
+                            <td>交易号</td>
+                            <td>{$row.trade_id}</td>
+                        </tr>
+                        <tr>
+                            <td>订单编号</td>
+                            <td>{$row.order_id}</td>
+                        </tr>
+                        <tr>
+                            <td>产品名称</td>
+                            <td>{$row.product_name}</td>
+                        </tr>
+                        <tr>
+                            <td>用户编号</td>
+                            <td>{$row.user_flag}</td>
+                        </tr>
+                        <tr>
+                            <td>订单币种</td>
+                            <td>{$row.currency}</td>
+                        </tr>
+                        <tr>
+                            <td>订单金额</td>
+                            <td>{$row.order_amount}</td>
+                        </tr>
+                        <tr>
+                            <td>实际支付（USDT）</td>
+                            <td>{$row.actual_amount}</td>
+                        </tr>
+                        <tr>
+                            <td>收款地址</td>
+                            <td>{$row.token}</td>
+                        </tr>
+                        <tr>
+                            <td>状态</td>
+                            <td>
+                                {if $row.status==1}<span class="text-primary"><i class="fa fa-circle"></i> 等待支付</span>{/if}
+                                {if $row.status==2}<span class="text-success"><i class="fa fa-circle"></i> 支付成功</span>{/if}
+                                {if $row.status==3}<span class="text-danger"><i class="fa fa-circle"></i> 已过期</span>{/if}
+                            </td>
+                        </tr>
+                        {if $row.status==2}
+                        <tr>
+                            <td>交易区块编号</td>
+                            <td>{$row.block_transaction_id}</td>
+                        </tr>
+                        {/if}
+                        <tr>
+                            <td>通知地址</td>
+                            <td>{$row.notify_url2}</td>
+                        </tr>
+                        <tr>
+                            <td>回跳地址</td>
+                            <td>{$row.redirect_url}</td>
+                        </tr>
+                        <tr>
+                            <td>回调次数</td>
+                            <td>{$row.callback_num}</td>
+                        </tr>
+                        <tr>
+                            <td>回调确认</td>
+                            <td>
+                                {if $row.callback_confirm==0}-{/if}
+                                {if $row.callback_confirm==1}是{/if}
+                                {if $row.callback_confirm==2}否{/if}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>创建时间</td>
+                            <td>{$row.created_at}</td>
+                        </tr>
+                        <tr>
+                            <td>更新时间</td>
+                            <td>{$row.updated_at}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            {if $row.status!=2}
+            <div class="tab-pane fade " id="tab-manual">
+                <div class="widget-body no-padding">
+                    <form id="update-form" class="edit-form form-horizontal" role="form" data-toggle="validator" method="POST" action="{:url('order/update')}">
+                        <input type="hidden" name="row[order_id]" value="{$row.id}" />
+                        <table class="table table-striped">
+                            <tbody>
+                            <tr data-favisible="" data-name="name" class="">
+                                <td width="25%">更改订单状态</td>
+                                <td width="75%">
+                                    <div class="row">
+                                        <div class="col-sm-8 col-xs-12">
+                                            <select  name="row[order_status]" class="form-control selectpicker" data-tip="" >
+                                                <option value="2" >支付成功</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-sm-4"></div>
+                                    </div>
+                                </td>
+                            </tr>
+                            </tbody>
+                            <tfoot>
+                            <tr>
+                                <td></td>
+                                <td>
+                                    <div class="">
+                                        <button type="submit" class="btn btn-primary btn-embossed">提交</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            </tfoot>
+                        </table>
+                    </form>
+                </div>
+                <div class="panel-heading" style="background: #fff;border-color: #fff;">
+                    <div class="panel-lead">
+                        <em style="display: block;font-weight: bold;font-style: normal;">说明</em>
+                        <p>1.将订单状态重置为“支付成功”后，系统调用通知URL通知网站支付结果。</p>
+                    </div>
+                </div>
+            </div>
+            {/if}
+        </div>
+    </div>
+</div>

@@ -1,0 +1,24 @@
+<meta charset="utf-8">
+<title>{$title|default=''}</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<meta name="renderer" content="webkit">
+<meta name="referrer" content="never">
+<meta name="robots" content="noindex, nofollow">
+
+<link rel="shortcut icon" href="__CDN__/assets/img/favicon.ico" />
+<!-- Loading Bootstrap -->
+<link href="__CDN__/assets/css/backend.min.css?v=" rel="stylesheet">
+
+{if cookie('adminskin') != ''}
+<link href="__CDN__/assets/css/skins/{:cookie('adminskin')}.css" rel="stylesheet">
+{/if}
+
+<!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
+<!--[if lt IE 9]>
+  <script src="__CDN__/assets/js/html5shiv.js"></script>
+  <script src="__CDN__/assets/js/respond.min.js"></script>
+<![endif]-->
+<script type="text/javascript">
+    var require = {
+        config:  {"site":{"name":"{$title}","cdnurl":"","version":"1.0.2","timezone":"Asia\/Shanghai","languages":{"backend":"zh-cn","frontend":"zh-cn"}},"upload":{"cdnurl":"","uploadurl":"\/merchant.php\/ajax\/upload","bucket":"local","maxsize":"10mb","mimetype":"jpg,png,bmp,jpeg,gif,webp,zip,rar,wav,mp4,mp3,webm","chunking":false,"chunksize":2097152,"savekey":"\/uploads\/{year}{mon}{day}\/{filemd5}{.suffix}","multipart":[],"multiple":false,"fullmode":false,"thumbstyle":"","storage":"local"},"modulename":"merchant","controllername":"<?php echo strtolower(Request()->controller()); ?>","actionname":"<?php echo strtolower(Request()->action()); ?>","jsname":"merchant\/<?php echo strtolower(Request()->controller()); ?>","moduleurl":"\/merchant.php","language":"zh-cn","referer":null,"__PUBLIC__":"\/","__ROOT__":"\/","__CDN__":"","cookie":{"prefix":""}}    };
+</script>
