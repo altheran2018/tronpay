@@ -1,56 +1,51 @@
-ThinkPHP 6.0
+商户后台，基于TP6.0开发
 ===============
 
 > 运行环境要求PHP7.2+，兼容PHP8.1
 
-[官方应用服务市场](https://market.topthink.com) | [`ThinkAPI`——官方统一API服务](https://docs.topthink.com/think-api)
+## 系统简介
 
-ThinkPHPV6.0版本由[亿速云](https://www.yisu.com/)独家赞助发布。
+USDT收款接口目前比较成熟，市面上有EPUSDT，TOKENPAY等优秀开源项目。
 
-## 主要新特性
+本系统监听底层使用EPUSDT（也可部署TOKENPAY或两者同时服务），可以为多商户提供USDT收款服务，款项直接进入商户所设定的钱包地址，无需结算。
 
-* 采用`PHP7`强类型（严格模式）
-* 支持更多的`PSR`规范
-* 原生多应用支持
-* 更强大和易用的查询
-* 全新的事件系统
-* 模型事件和数据库事件统一纳入事件系统
-* 模板引擎分离出核心
-* 内部功能中间件化
-* SESSION/Cookie机制改进
-* 对Swoole以及协程支持改进
-* 对IDE更加友好
-* 统一和精简大量用法
+适用于有渠道运营或自有多品牌网站。
+
+## 系统演示
+   [http://www.tronpay.co]
 
 ## 安装
 
-~~~
-composer create-project topthink/think tp 6.0.*
-~~~
+### EPUSDT搭建
+   参考：[https://github.com/assimon/epusdt/tree/master]
 
-如果需要更新框架使用
-~~~
-composer update topthink/framework
-~~~
+### 官网搭建
+   搭建表态网站即可，把“官网”目录下的文件复制到站点目录下
 
-## 文档
+### 商户后台搭建
+   1. 建立PHP站点
+   2. 将“商户后台”目录下的文件复制到站点目录下
+   3. 将运行目录设定为站点目录下的“Public”
+   4. 新建MYSQL数据库，将data.sql导入至数据库中
+   5. 修改根目录下的.env中的数据库连接参数
 
-[完全开发手册](https://www.kancloud.cn/manual/thinkphp6_0/content)
+## 增值服务
 
-## 参与开发
+* 安装与部署
+* 日常运维
+* 多监听服务器部署
+* 定制运营后台
+* 商户对接
 
-请参阅 [ThinkPHP 核心框架包](https://github.com/top-think/framework)。
+3000U起
 
 ## 版权信息
 
-ThinkPHP遵循Apache2开源协议发布，并提供免费使用。
+本系统为开源的产品，仅用于学习交流使用！
+不可用于任何违反中华人民共和国(含台湾省)或使用者所在地区法律法规的用途。
+因为作者即本人仅完成代码的开发和开源活动(开源即任何人都可以下载使用或修改分发)，从未参与用户的任何运营和盈利活动。
+且不知晓用户后续将程序源代码用于何种用途，故用户使用过程中所带来的任何法律责任即由用户自己承担。
 
-本项目包含的第三方源码和二进制文件之版权信息另行标注。
+## 联系方式
 
-版权所有Copyright © 2006-2021 by ThinkPHP (http://thinkphp.cn)
-
-All rights reserved。
-
-ThinkPHP® 商标和著作权所有者为上海顶想信息科技有限公司。
-
-更多细节参阅 [LICENSE.txt](LICENSE.txt)
+[https://t.me/allen2023666](telegram)
