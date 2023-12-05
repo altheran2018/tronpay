@@ -48,4 +48,4 @@ USDT收款接口目前比较成熟，市面上有EPUSDT，TOKENPAY等优秀开�
 
 ## 联系方式
 
-[https://t.me/allen2023666](telegram)
+[https://t.me/allen2023666]
